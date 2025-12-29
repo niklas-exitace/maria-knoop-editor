@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* PDF Viewer styles */
+.pdf-page-container {
+  position: relative;
+  display: inline-block;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  background: white;
+}
+
+.pdf-canvas {
+  display: block;
+}
+
+.pdf-overlay-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.pdf-overlay-container > * {
+  pointer-events: auto;
+}
+
+/* Field overlay styles */
+.field-overlay {
+  position: absolute;
+  background: rgba(255, 255, 200, 0.3);
+  border: 1px solid rgba(200, 180, 0, 0.5);
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.field-overlay:hover {
+  background: rgba(255, 255, 200, 0.5);
+  border-color: rgba(200, 180, 0, 0.8);
+}
+
+.field-overlay:focus-within {
+  background: rgba(255, 255, 200, 0.6);
+  border-color: rgba(200, 150, 0, 1);
+  z-index: 10;
+}
+
+.field-overlay.cyan {
+  background: rgba(200, 255, 255, 0.3);
+  border-color: rgba(0, 180, 200, 0.5);
+}
+
+.field-overlay.cyan:hover {
+  background: rgba(200, 255, 255, 0.5);
+  border-color: rgba(0, 180, 200, 0.8);
+}
+
+.field-overlay input,
+.field-overlay textarea {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 2px 4px;
+  font-family: inherit;
+  resize: none;
+  overflow: hidden;
+}

@@ -1,0 +1,122 @@
+{
+  "double_curly_placeholders": [
+    "client_name",
+    "object_appraise_date",
+    "object_street",
+    "object_town",
+    "object_visit_date",
+    "object_zip"
+  ],
+  "curly_placeholders": [
+    "(3. OG rechts)",
+    "07.10.2025",
+    "1964",
+    "1974",
+    "29 J",
+    "29 Jahre",
+    "3-Zimmer-Wohnung",
+    "5 Punkte",
+    "5,0",
+    "80 J",
+    "David Eberlein"
+  ],
+  "bracket_blocks": [
+    "Das Objekt ist zum Wertermittlungsstichtag vermietet",
+    "Die Effizienzklasse D liegt gem. HypZert Studie im Vertrauensbereich (A-D)",
+    "Die Wärmedämmung entspricht nicht den modernen Anforderungen. Die Energiekosten sind aufgrund der veralteten Wärmedämmung verhältnismäßig hoch.Das Haus ist nicht barrierefrei. Um eine Barrierefreiheit herzustellen, müssten größere Umbaumaßnahmen durchgeführt werden.",
+    "Die baulichen Anlagen wurden nur in Maßen instand gehalten (in Maßen, einfach, mittel überwiegend, vollständig). Das Sondereigentum / (Objekt) wurde in 2022 durch den Eigentümer modernisiert (Badezimmer, Elektrik, tlw. Bodenbelege).",
+    "Die vertikale Erschließung aller Etagen des Gebäudes, erfolgt über das Treppenhaus. Ein Aufzug ist nicht vorhanden.",
+    "Insgesamt kann festgestellt werden, dass der Zustand des Wertermittlungsobjektes auch unterBerücksichtigung der einfachen Modernisierungsmaßnahmen im Zuge der ersichtlich laufenden Instandhaltung als nicht mehr zeitgemäß zu beurteilen ist. Eine energetische Sanierung ist in Betracht zu ziehen.Die Allgemeinbereiche und die Erschließung des Objektes sind mittelmäßig und dem Niveau des Objektes entsprechend. Die Außenanlagen befinden sich einem einfachen Zustand. WesentlicheSchäden an den baulichen Anlagen sind aus der Ortsbesichtigung nicht ersichtlich. EinInstandhaltungsstau ist erkennbar, jedoch bereits über die kurze Restnutzungsdauer abgebildet.",
+    "Treppenaufgang, 2 Wohn-/ Schlafräume sowie Küche und Badezimmer",
+    "Wohnwirtschaftliche Nutzung des gesamten Gebäudes"
+  ],
+  "notes": {
+    "yellow_highlight": "single variable (ELB)",
+    "cyan_highlight": "text/table content (may be generated via LLM)",
+    "red_highlight": "image or external export/API content"
+  },
+  "sections_added": {
+    "3.2 Festlegung des Modernisierungsgrads": {
+      "type": "table+sidebar",
+      "modernization_table": {
+        "columns": [
+          "Maßnahme",
+          "max.",
+          "Punkte"
+        ],
+        "rows": [
+          {
+            "key": "modernization.roofRenewal",
+            "label": "Dacherneuerung (inklusive Verbesserung der Wärmedämmung):",
+            "max": 4,
+            "punkte_example": "0,5"
+          },
+          {
+            "key": "modernization.windowsAndDoors",
+            "label": "Modernisierung der Fenster und Außentüren:",
+            "max": 2,
+            "punkte_example": "1,0"
+          },
+          {
+            "key": "modernization.plumbing",
+            "label": "Modernisierung der Leitungssysteme (Strom, Gas, Wasser, Abwasser):",
+            "max": 2,
+            "punkte_example": "0,5"
+          },
+          {
+            "key": "modernization.heating",
+            "label": "Modernisierung der Heizungsanlage:",
+            "max": 2,
+            "punkte_example": "1,0"
+          },
+          {
+            "key": "modernization.wallInsulation",
+            "label": "Wärmedämmung der Außenwände:",
+            "max": 4,
+            "punkte_example": "0,0"
+          },
+          {
+            "key": "modernization.bathrooms",
+            "label": "Modernisierung von Bädern:",
+            "max": 2,
+            "punkte_example": "1,0"
+          },
+          {
+            "key": "modernization.interior",
+            "label": "Modernisierung des Innenausbaus (z. B. Decken, Fußböden, Treppen):",
+            "max": 2,
+            "punkte_example": "1,0"
+          },
+          {
+            "key": "modernization.floorPlan",
+            "label": "Wesentliche Verbesserung der Grundrissgestaltung:",
+            "max": 2,
+            "punkte_example": "0,0"
+          }
+        ],
+        "total_points_key": "modernization.totalPoints",
+        "total_points_placeholder_example": "5,0"
+      },
+      "sidebar_labels": [
+        "Gesamtnutzungsdauer:",
+        "Restnutzungsdauer, modifiziert:"
+      ]
+    },
+    "3.3 Ermittlung der Restnutzungsdauer und des fiktiven Baujahrs": {
+      "type": "value-summary+text",
+      "value_block": {
+        "wertermittlungsstichtag_key": "object_appraise_date",
+        "baujahr_key": "building.yearBuilt",
+        "baujahr_modifiziert_key": "calculation.modifiedYear",
+        "gesamtnutzungsdauer_key": "calculation.gndYears",
+        "restnutzungsdauer_modifiziert_key": "calculation.rndYears"
+      },
+      "text_block_placeholders": [
+        "5 Punkte",
+        "29 Jahre",
+        "1974"
+      ],
+      "formula_line_is_static_example": true
+    }
+  }
+}

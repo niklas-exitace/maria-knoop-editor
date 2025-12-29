@@ -1,0 +1,115 @@
+{
+  "document": {
+    "reportNumber": "TEST-001",
+    "textPages": 14,
+    "annexPages": 15
+  },
+  "property": {
+    "unitType": "2-Zimmer-Wohnung",
+    "unitPosition": "3. OG links",
+    "street": "Piepenstockplatz 5",
+    "zipCode": "44263",
+    "city": "Dortmund"
+  },
+  "dates": {
+    "valuationDate": "01.01.2024",
+    "inspectionDate": "28.10.2025",
+    "reportDate": "18.12.2025"
+  },
+  "client": {
+    "name": "Tobias Subkowiak"
+  },
+  "building": {
+    "type": "Einzelne Eigentumswohnung mit 8 Wohnungen",
+    "unitsCount": 8,
+    "yearBuilt": 1955,
+    "floors": "UG - 4. OG",
+    "atticInfo": "DG nicht ausgebaut",
+    "foundation": "Voll unterkellert",
+    "exteriorWalls": "verputzt, gestrichen, Verkleidung",
+    "roof": "Satteldach mit Dachziegelsteine",
+    "windows": "Isolierverglasung, manuelle Rollläden, Kunststoff",
+    "heating": "Gas Zentralheizung",
+    "energyClass": "k. A.",
+    "aufzug": false,
+    "nutzungsart": "wohnwirtschaftlich"
+  },
+  "calculation": {
+    "restnutzungsdauerYears": 23,
+    "gesamtnutzungsdauerYears": 80,
+    "standardStufe": "ImmoWertV – Stufe 2 bis 3",
+    "grossFloorArea": "k. A."
+  },
+  "areas": {
+    "livingAreaM2": 49,
+    "balconyAreaM2": 0
+  },
+  "accessibility": {
+    "barrierefrei": false,
+    "belichtung": "einwandfrei"
+  },
+  "outdoor": {
+    "hatBalkon": false,
+    "hatTerrasse": false,
+    "hatGarten": false,
+    "flaeche": 0
+  },
+  "inspection": {
+    "attendees": "Der Mieter / Name anonymisiert",
+    "areasVisited": "Treppenaufgang, Badezimmer, Heizungsraum, Wohn-/Schlafräume, Küche"
+  },
+  "narratives": {
+    "useDescription": "Wohnwirtschaftliche Nutzung des gesamten Gebäudes.",
+    "verticalAccess": "Die vertikale Erschließung aller Etagen des Gebäudes erfolgt über das Treppenhaus. Ein Aufzug ist nicht vorhanden.",
+    "overallCondition": "Insgesamt kann festgestellt werden, dass der Zustand des Wertermittlungsobjektes auch unter Berücksichtigung der durchgeführten Modernisierungsmaßnahmen als nicht mehr zeitgemäß zu beurteilen ist. Das Gebäude wurde 1955 errichtet und weist ein Alter von 70 Jahren auf. Eine energetische Sanierung ist in Betracht zu ziehen. Die Allgemeinbereiche und die Erschließung des Objektes sind in mittlerem Zustand. Wesentliche Schäden an den baulichen Anlagen sind aus der Ortsbesichtigung nicht ersichtlich.",
+    "insulation": "Die Wärmedämmung entspricht nicht den modernen Anforderungen. Die Energiekosten sind aufgrund der veralteten Wärmedämmung verhältnismäßig hoch.",
+    "barrierFree": "Das Haus ist nicht barrierefrei. Um eine Barrierefreiheit herzustellen, müssten größere Umbaumaßnahmen durchgeführt werden.",
+    "modernizationList": "Wärmedämmung der Außenwände: -\nModernisierung der Fenster: 2012\nDacherneuerung inkl. Wärmedämmung: -\nModernisierung der Bäder: 2010\nModernisierung des Innenausbaus: 2010\nModernisierung der Heizungsanlage: -\nModernisierung der Leitungssysteme: 2010\nWesentliche Verbesserung der Grundrissgestaltung: -",
+    "floorPlanQuality": "Die Qualität des Grundrisses ist als zweckmäßig zu bezeichnen.",
+    "barrierFreeShort": "Nicht barrierefrei",
+    "lighting": "Die Belichtungsverhältnisse sind einwandfrei.",
+    "balcony": "Das Sondereigentum verfügt über keinen Balkon.",
+    "defects": "Zum Zeitpunkt der Besichtigung war der Heizungsraum nicht zugänglich.\nDaher sind keine weiteren Angaben möglich.",
+    "otherNotes": "Weitere Bautechnische Beanstandungen konnten während des Ortstermins nicht festgestellt werden. Die Aufstellung der bautechnischen Beanstandungen erhebt nicht den Anspruch auf Vollständigkeit, da das vorliegende Gutachten kein qualifiziertes Bauschadensgutachten ersetzen soll und kann."
+  },
+  "components": {
+    "sanitaryInstallation": "Bad mit Dusche, WC",
+    "electricalInstallation": "zeitgemäße Anzahl Steckdosen/Lichtauslässe, Unterverteilung,",
+    "heatingType": "Heizkörper",
+    "specialFeatures": ""
+  },
+  "modernization": {
+    "roofRenewal": {
+      "points": 0,
+      "weight": 0
+    },
+    "windowModernization": {
+      "points": 1,
+      "weight": 0.5
+    },
+    "plumbingModernization": {
+      "points": 0,
+      "weight": 0
+    },
+    "heatingModernization": {
+      "points": 1,
+      "weight": 0.5
+    },
+    "wallInsulation": {
+      "points": 0,
+      "weight": 0
+    },
+    "bathroomModernization": {
+      "points": 0,
+      "weight": 0
+    },
+    "interiorModernization": {
+      "points": 2,
+      "weight": 0.5
+    },
+    "floorPlanImprovement": {
+      "points": 0,
+      "weight": 0
+    }
+  }
+}
