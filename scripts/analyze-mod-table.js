@@ -25,7 +25,23 @@ cells.forEach((cell, i) => {
     const m = t.match(/>([^<]*)</);
     return m ? m[1] : '';
   }).join('');
-  if (content.trim()) {
+
+  // Show all punkte cells (7, 10, 13, 16, 19, 22, 25, 28)
+  const punkteCells = [7, 10, 13, 16, 19, 22, 25, 28];
+  if (punkteCells.includes(i)) {
+    console.log(`\n=== PUNKTE Cell ${i} ===`);
+    console.log('Content:', content);
+
+    // Test the exact regex used in docx-replacements.ts
+    const regex = /(<w:t[^>]*>)([^<]*)(<\/w:t>)/;
+    const match = cell.match(regex);
+    console.log('Regex match:', match ? `YES - found "${match[2]}"` : 'NO MATCH');
+
+    // Show full cell for debugging
+    console.log('Full cell XML:');
+    console.log(cell);
+    console.log('---');
+  } else if (content.trim()) {
     console.log(`Cell ${i}: ${content.substring(0, 60)}`);
   }
 });

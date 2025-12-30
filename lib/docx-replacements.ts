@@ -489,8 +489,6 @@ function replaceModernizationTable(xml: string, data: GutachtenData): string {
   const tables = xml.match(tablePattern) || [];
   const modTableIndex = tables.findIndex(t => t.includes('Dacherneuerung'));
 
-  console.log('[ModTable] Found', tables.length, 'tables, modernization at index:', modTableIndex);
-
   if (modTableIndex === -1) {
     // Table not in this XML file (normal for headers/footers)
     return xml;
@@ -510,7 +508,6 @@ function replaceModernizationTable(xml: string, data: GutachtenData): string {
     fmt(data.modernization.interiorModernization.points * data.modernization.interiorModernization.weight),
     fmt(data.modernization.floorPlanImprovement.points * data.modernization.floorPlanImprovement.weight),
   ];
-  console.log('[ModTable] Calculated Punkte values:', punkteValues);
 
   // Extract all cells from the table
   const cellPattern = /<w:tc>([\s\S]*?)<\/w:tc>/g;
@@ -556,7 +553,6 @@ function replaceModernizationTable(xml: string, data: GutachtenData): string {
     );
 
     if (newCellContent !== cellContent) {
-      console.log(`[ModTable] Replacing cell ${cellIdx} with value: ${newValue}`);
       const adjustedStart = cell.start + offset;
       const adjustedEnd = cell.end + offset;
 
@@ -566,8 +562,6 @@ function replaceModernizationTable(xml: string, data: GutachtenData): string {
         result.substring(adjustedEnd);
 
       offset += newCellContent.length - cellContent.length;
-    } else {
-      console.log(`[ModTable] Cell ${cellIdx} unchanged (no w:t match?)`);
     }
   }
 
