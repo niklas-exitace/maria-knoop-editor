@@ -122,31 +122,16 @@ function cleanupRemainingPlaceholders(xml: string): string {
   // Remove [MANUELL: ...] patterns (in case any slipped through)
   result = result.replace(/\[MANUELL:[^\]]*\]/g, '');
 
-  // Remove remaining {{ ... }} patterns (unfilled double-curly)
-  result = result.replace(/\{\{\s*[a-z_]+\s*\}\}/gi, '');
+  // Remove remaining {{ ... }} patterns - keep content, remove double braces
+  result = result.replace(/\{\{\s*([^}]+)\s*\}\}/g, '$1');
 
-  // Remove ALL remaining [...] bracket blocks that look like template placeholders
-  // These are narrative blocks from the template that weren't matched exactly
-  // Match brackets containing text (at least 10 chars to avoid removing short refs like [1])
-  result = result.replace(/\[[^\]]{10,}\]/g, (match) => {
-    // Extract the content without brackets
-    const content = match.slice(1, -1);
-    // Return content without brackets (the text is good, just remove the brackets)
-    return content;
-  });
+  // Remove ALL remaining [...] bracket blocks - keep content, remove brackets
+  // (at least 3 chars to avoid removing short refs like [1])
+  result = result.replace(/\[([^\]]{3,})\]/g, '$1');
 
-  // Remove remaining { ... } single curly patterns that look like placeholders
-  // Be careful not to remove legitimate text - only remove patterns that look like placeholders
-  result = result.replace(/\{\s*[A-Za-z0-9_\-.,\s]+\s*\}/g, (match) => {
-    // Keep if it looks like a real value (dates, numbers, etc.)
-    if (/^\{\s*\d{2}\.\d{2}\.\d{4}\s*\}$/.test(match)) return match; // Date
-    if (/^\{\s*\d+[,.]?\d*\s*(J|Jahre|m²|EUR)?\s*\}$/.test(match)) return match; // Number with unit
-    // Remove brackets but keep content if it looks like actual text
-    const content = match.slice(1, -1).trim();
-    if (content.length > 20) return content; // Long text - keep it, just remove braces
-    // Remove if it looks like a placeholder
-    return '';
-  });
+  // Remove ALL remaining { ... } single curly patterns - keep content, remove braces
+  // This catches any placeholder that wasn't explicitly mapped
+  result = result.replace(/\{([^}]{2,})\}/g, '$1');
 
   return result;
 }
