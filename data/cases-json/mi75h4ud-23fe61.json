@@ -1,0 +1,128 @@
+{
+  "document": {
+    "reportId": "mi75h4ud-23fe61"
+  },
+  "property": {
+    "unitType": "2-Zimmer-Wohnung",
+    "unitPosition": "[MANUELL: z.B. \"3. OG links\"]",
+    "street": "Heidberg 19a",
+    "zipCode": "22301",
+    "city": "Hamburg"
+  },
+  "dates": {
+    "valuationDate": "03.08.2024",
+    "inspectionDate": "[MANUELL: Besichtigungsdatum]",
+    "reportDate": "24.11.2025"
+  },
+  "client": {
+    "name": "Lars Kiehne"
+  },
+  "building": {
+    "type": "Mehrfamilienhaus mit 56 Wohnungen",
+    "unitsCount": 56,
+    "yearBuilt": 1950,
+    "floors": "UG - EG - 4. OG",
+    "atticInfo": "k. A.",
+    "foundation": "Voll unterkellert",
+    "exteriorWalls": "Massivbauweise",
+    "roof": "Satteldach mit Dachziegel/-steine",
+    "windows": "Doppelverglasung",
+    "heating": "Ölheizung",
+    "energyClass": "k. A.",
+    "aufzug": false,
+    "nutzungsart": "wohnwirtschaftlich"
+  },
+  "calculation": {
+    "restnutzungsdauerYears": 13,
+    "gesamtnutzungsdauerYears": 80,
+    "standardStufe": "ImmoWertV – Stufe 2 bis 3",
+    "grossFloorArea": "46 m²"
+  },
+  "areas": {
+    "livingAreaM2": 46,
+    "balconyAreaM2": 0
+  },
+  "accessibility": {
+    "barrierefrei": false,
+    "belichtung": "einwandfrei"
+  },
+  "outdoor": {
+    "hatBalkon": false,
+    "hatTerrasse": false,
+    "hatGarten": false,
+    "flaeche": 0
+  },
+  "inspection": {
+    "attendees": "[MANUELL: z.B. \"Der Mieter / Name anonymisiert\"]",
+    "areasVisited": "[MANUELL: z.B. \"Treppenaufgang, 2 Wohn-/Schlafräume sowie Küche und Bad\"]"
+  },
+  "narratives": {
+    "useDescription": "Wohnwirtschaftliche Nutzung des gesamten Gebäudes.",
+    "verticalAccess": "Die vertikale Erschließung aller Etagen des Gebäudes erfolgt über das Treppenhaus. Ein Aufzug ist nicht vorhanden.",
+    "overallCondition": "[MANUELL: Gesamtzustandsbeschreibung nach Besichtigung]",
+    "insulation": "Die Wärmedämmung entspricht nicht den modernen Anforderungen. Die Energiekosten sind aufgrund der veralteten Wärmedämmung verhältnismäßig hoch.",
+    "barrierFree": "Das Haus ist nicht barrierefrei. Um eine Barrierefreiheit herzustellen, müssten größere Umbaumaßnahmen durchgeführt werden.",
+    "modernizationList": "Dacherneuerung inkl. Wärmedämmung: nicht stattgefunden\nModernisierung der Fenster: Ja vor mehr als 20 Jahren\nModernisierung der Leitungssysteme: Ja vor mehr als 20 Jahren\nModernisierung der Heizungsanlage: Ja vor mehr als 20 Jahren\nWärmedämmung der Außenwände: nicht stattgefunden\nModernisierung der Bäder: Überwiegend mit Fenster\nModernisierung des Innenausbaus: Ja vor mehr als 20 Jahren\nWesentliche Verbesserung der Grundrissgestaltung: 0 %",
+    "floorPlanQuality": "Die Qualität des Grundrisses ist als zweckmäßig zu bezeichnen.",
+    "barrierFreeShort": "Nicht barrierefrei",
+    "lighting": "Die Belichtungsverhältnisse sind einwandfrei.",
+    "balcony": "k. A.",
+    "defects": "[MANUELL: Festgestellte Bauschäden oder \"Wesentliche Bauschäden konnten während der Besichtigung nicht festgestellt werden.\"]",
+    "otherNotes": "[MANUELL: Weitere Beanstandungen oder Standardtext]"
+  },
+  "components": {
+    "sanitaryInstallation": "[MANUELL: z.B. \"Durchschnittliche Ausstattung\"]",
+    "electricalInstallation": "[MANUELL: z.B. \"Durchschnittliche Ausstattung\"]",
+    "heatingType": "Ölheizung",
+    "specialFeatures": "[MANUELL: z.B. \"Balkon\" oder \"-\"]"
+  },
+  "modernization": {
+    "roofRenewal": {
+      "points": 0,
+      "weight": 0.5
+    },
+    "windowModernization": {
+      "points": 0,
+      "weight": 0.5
+    },
+    "plumbingModernization": {
+      "points": 0,
+      "weight": 0
+    },
+    "heatingModernization": {
+      "points": 0,
+      "weight": 0.5
+    },
+    "wallInsulation": {
+      "points": 0,
+      "weight": 0
+    },
+    "bathroomModernization": {
+      "points": 0,
+      "weight": 0.5
+    },
+    "interiorModernization": {
+      "points": 0,
+      "weight": 0.5
+    },
+    "floorPlanImprovement": {
+      "points": 0,
+      "weight": 0
+    }
+  },
+  "_manual": {
+    "fields": [
+      "property.unitPosition",
+      "dates.inspectionDate",
+      "inspection.attendees",
+      "inspection.areasVisited",
+      "narratives.overallCondition",
+      "narratives.defects",
+      "narratives.otherNotes",
+      "components.sanitaryInstallation",
+      "components.electricalInstallation",
+      "components.specialFeatures"
+    ],
+    "note": "Fields marked with [MANUELL: ...] need to be filled in after inspection."
+  }
+}

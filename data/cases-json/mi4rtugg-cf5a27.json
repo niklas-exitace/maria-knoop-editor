@@ -1,0 +1,127 @@
+{
+  "document": {
+    "reportId": "mi4rtugg-cf5a27"
+  },
+  "property": {
+    "unitType": "Gewerbefläche",
+    "unitPosition": "[MANUELL: z.B. \"3. OG links\"]",
+    "street": "Esenser Straße 29",
+    "zipCode": "26603",
+    "city": "Aurich"
+  },
+  "dates": {
+    "valuationDate": "01.01.2022",
+    "inspectionDate": "[MANUELL: Besichtigungsdatum]",
+    "reportDate": "24.11.2025"
+  },
+  "client": {
+    "name": "Lars Kiehne"
+  },
+  "building": {
+    "type": "Gewerbeobjekt",
+    "yearBuilt": 1956,
+    "floors": "k. A.",
+    "atticInfo": "k. A.",
+    "foundation": "k. A.",
+    "exteriorWalls": "k. A.",
+    "roof": "k. A.",
+    "windows": "k. A.",
+    "heating": "k. A.",
+    "energyClass": "k. A.",
+    "aufzug": false,
+    "nutzungsart": "gewerblich"
+  },
+  "calculation": {
+    "restnutzungsdauerYears": 8,
+    "gesamtnutzungsdauerYears": 60,
+    "standardStufe": "ImmoWertV – Stufe 2 bis 3",
+    "grossFloorArea": "2128 m²"
+  },
+  "areas": {
+    "livingAreaM2": 2128,
+    "balconyAreaM2": 0
+  },
+  "accessibility": {
+    "barrierefrei": false,
+    "belichtung": "einwandfrei"
+  },
+  "outdoor": {
+    "hatBalkon": false,
+    "hatTerrasse": false,
+    "hatGarten": false,
+    "flaeche": 0
+  },
+  "inspection": {
+    "attendees": "[MANUELL: z.B. \"Der Mieter / Name anonymisiert\"]",
+    "areasVisited": "[MANUELL: z.B. \"Treppenaufgang, 2 Wohn-/Schlafräume sowie Küche und Bad\"]"
+  },
+  "narratives": {
+    "useDescription": "Gewerbliche Nutzung des Objektes.",
+    "verticalAccess": "Die vertikale Erschließung aller Etagen des Gebäudes erfolgt über das Treppenhaus. Ein Aufzug ist nicht vorhanden.",
+    "overallCondition": "[MANUELL: Gesamtzustandsbeschreibung nach Besichtigung]",
+    "insulation": "Die Wärmedämmung entspricht nicht den modernen Anforderungen. Die Energiekosten sind aufgrund der veralteten Wärmedämmung verhältnismäßig hoch.",
+    "barrierFree": "Das Haus ist nicht barrierefrei. Um eine Barrierefreiheit herzustellen, müssten größere Umbaumaßnahmen durchgeführt werden.",
+    "modernizationList": "Dacherneuerung inkl. Wärmedämmung: nicht stattgefunden\nModernisierung der Fenster: nicht stattgefunden\nModernisierung der Leitungssysteme: nicht stattgefunden\nModernisierung der Heizungsanlage: nicht stattgefunden\nWärmedämmung der Außenwände: nicht stattgefunden\nModernisierung des Innenausbaus: nicht stattgefunden\nWesentliche Verbesserung der Grundrissgestaltung: 0 %",
+    "floorPlanQuality": "Die Qualität des Grundrisses ist als zweckmäßig zu bezeichnen.",
+    "barrierFreeShort": "Nicht barrierefrei",
+    "lighting": "Die Belichtungsverhältnisse sind einwandfrei.",
+    "balcony": "k. A.",
+    "defects": "[MANUELL: Festgestellte Bauschäden oder \"Wesentliche Bauschäden konnten während der Besichtigung nicht festgestellt werden.\"]",
+    "otherNotes": "[MANUELL: Weitere Beanstandungen oder Standardtext]"
+  },
+  "components": {
+    "sanitaryInstallation": "[MANUELL: z.B. \"Durchschnittliche Ausstattung\"]",
+    "electricalInstallation": "[MANUELL: z.B. \"Durchschnittliche Ausstattung\"]",
+    "heatingType": "Heizkörper",
+    "specialFeatures": "[MANUELL: z.B. \"Balkon\" oder \"-\"]"
+  },
+  "modernization": {
+    "roofRenewal": {
+      "points": 0,
+      "weight": 0.5
+    },
+    "windowModernization": {
+      "points": 0,
+      "weight": 0.5
+    },
+    "plumbingModernization": {
+      "points": 0,
+      "weight": 0
+    },
+    "heatingModernization": {
+      "points": 0,
+      "weight": 0.5
+    },
+    "wallInsulation": {
+      "points": 0,
+      "weight": 0
+    },
+    "bathroomModernization": {
+      "points": 0,
+      "weight": 0.5
+    },
+    "interiorModernization": {
+      "points": 0,
+      "weight": 0.5
+    },
+    "floorPlanImprovement": {
+      "points": 0,
+      "weight": 0
+    }
+  },
+  "_manual": {
+    "fields": [
+      "property.unitPosition",
+      "dates.inspectionDate",
+      "inspection.attendees",
+      "inspection.areasVisited",
+      "narratives.overallCondition",
+      "narratives.defects",
+      "narratives.otherNotes",
+      "components.sanitaryInstallation",
+      "components.electricalInstallation",
+      "components.specialFeatures"
+    ],
+    "note": "Fields marked with [MANUELL: ...] need to be filled in after inspection."
+  }
+}

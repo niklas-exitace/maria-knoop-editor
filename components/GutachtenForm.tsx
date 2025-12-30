@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { useEditorStore } from '../lib/store';
 import type { GutachtenData } from '../lib/schema';
 import { FORM_SECTIONS } from '../lib/schema';
@@ -13,6 +13,15 @@ import { InspectionSection } from './sections/InspectionSection';
 import { NarrativesSection } from './sections/NarrativesSection';
 import { ComponentsSection } from './sections/ComponentsSection';
 import { DocumentPreview } from './DocumentPreview';
+
+interface CaseSummary {
+  id: string;
+  client: string;
+  street: string;
+  city: string;
+  yearBuilt: number;
+  label: string;
+}
 
 const SECTION_COMPONENTS: Record<string, React.ComponentType> = {
   property: PropertySection,
@@ -28,6 +37,10 @@ const SECTION_COMPONENTS: Record<string, React.ComponentType> = {
 export function GutachtenForm() {
   const [showPreview, setShowPreview] = useState(true);
   const [isLoadingCase, setIsLoadingCase] = useState(false);
+  const [cases, setCases] = useState<CaseSummary[]>([]);
+  const [selectedCaseId, setSelectedCaseId] = useState<string>('');
+  const [isLoadingCases, setIsLoadingCases] = useState(true);
+
   const activeSection = useEditorStore((s) => s.activeSection);
   const setActiveSection = useEditorStore((s) => s.setActiveSection);
   const isExporting = useEditorStore((s) => s.isExporting);
@@ -42,6 +55,24 @@ export function GutachtenForm() {
   const data = useEditorStore((s) => s.data);
 
   const ActiveSectionComponent = SECTION_COMPONENTS[activeSection];
+
+  // Load cases list on mount
+  useEffect(() => {
+    async function fetchCases() {
+      try {
+        const response = await fetch('/api/cases');
+        if (response.ok) {
+          const result = await response.json();
+          setCases(result.cases);
+        }
+      } catch (error) {
+        console.error('Failed to load cases:', error);
+      } finally {
+        setIsLoadingCases(false);
+      }
+    }
+    fetchCases();
+  }, []);
 
   const handleExport = async () => {
     setIsExporting(true);
@@ -107,23 +138,32 @@ export function GutachtenForm() {
   const handleReset = () => {
     if (confirm('Alle Änderungen zurücksetzen?')) {
       resetToDefaults();
+      setSelectedCaseId('');
     }
   };
 
-  const handleLoadTestCase = async () => {
+  const handleLoadCase = async (caseId: string) => {
+    if (!caseId) return;
+
     setIsLoadingCase(true);
+    setSelectedCaseId(caseId);
     try {
-      const response = await fetch('/api/test-case');
+      const response = await fetch(`/api/cases/${caseId}`);
       if (!response.ok) {
         const error = await response.json();
-        throw new Error(error.error || 'Failed to load test case');
+        throw new Error(error.error || 'Failed to load case');
       }
       const caseData: GutachtenData = await response.json();
       loadCase(caseData);
-      alert('Testfall "Subowiak Dortmund" geladen!');
+
+      const selectedCase = cases.find((c) => c.id === caseId);
+      if (selectedCase) {
+        alert(`Fall geladen: ${selectedCase.street}, ${selectedCase.city}`);
+      }
     } catch (error) {
-      console.error('Load test case error:', error);
+      console.error('Load case error:', error);
       alert('Fehler beim Laden: ' + String(error));
+      setSelectedCaseId('');
     } finally {
       setIsLoadingCase(false);
     }
@@ -136,6 +176,33 @@ export function GutachtenForm() {
         <div className="p-4 border-b border-gray-200">
           <h1 className="font-bold text-lg text-gray-900">RND Gutachten</h1>
           <p className="text-xs text-gray-500 mt-1">Maria Knoop Editor</p>
+        </div>
+
+        {/* Case Selector */}
+        <div className="p-3 border-b border-gray-200">
+          <label className="block text-xs font-medium text-gray-700 mb-1">
+            Fall auswählen
+          </label>
+          <select
+            value={selectedCaseId}
+            onChange={(e) => handleLoadCase(e.target.value)}
+            disabled={isLoadingCase || isLoadingCases}
+            className="w-full px-2 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500 disabled:opacity-50 disabled:bg-gray-100"
+          >
+            <option value="">
+              {isLoadingCases
+                ? 'Lade Fälle...'
+                : `-- ${cases.length} Fälle verfügbar --`}
+            </option>
+            {cases.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.street}, {c.city} ({c.yearBuilt})
+              </option>
+            ))}
+          </select>
+          {isLoadingCase && (
+            <p className="text-xs text-orange-600 mt-1">Lade Fall...</p>
+          )}
         </div>
 
         {/* Section Navigation */}
@@ -159,13 +226,6 @@ export function GutachtenForm() {
         {/* Actions */}
         <div className="p-3 border-t border-gray-200 space-y-2">
           <button
-            onClick={handleLoadTestCase}
-            disabled={isLoadingCase}
-            className="w-full px-3 py-2 text-sm bg-orange-600 text-white rounded-md hover:bg-orange-700 disabled:opacity-50"
-          >
-            {isLoadingCase ? 'Lade...' : 'Testfall laden (Subowiak)'}
-          </button>
-          <button
             onClick={handleGenerateNarratives}
             disabled={isGeneratingNarrative}
             className="w-full px-3 py-2 text-sm bg-purple-600 text-white rounded-md hover:bg-purple-700 disabled:opacity-50"
@@ -187,7 +247,7 @@ export function GutachtenForm() {
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
             }`}
           >
-            {showPreview ? '◉ Vorschau an' : '○ Vorschau aus'}
+            {showPreview ? 'Vorschau an' : 'Vorschau aus'}
           </button>
           {isDirty && (
             <button
