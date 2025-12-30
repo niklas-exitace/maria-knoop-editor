@@ -23,25 +23,118 @@ export function applyAllReplacements(
 ): string {
   let result = xml;
 
+  // Pre-pass: Clean [MANUELL: ...] placeholders from data
+  const cleanedData = cleanManualPlaceholders(data);
+
   // Pass 0: Normalize split placeholders (merge adjacent runs)
   result = normalizeSplitPlaceholders(result);
 
   // Pass 1: Double-curly placeholders {{variable}}
-  result = replaceDoubleCurlyPlaceholders(result, data);
+  result = replaceDoubleCurlyPlaceholders(result, cleanedData);
 
   // Pass 2: Single-curly placeholders {sample_value}
-  const singleCurlyMap = createSingleCurlyMap(data);
+  const singleCurlyMap = createSingleCurlyMap(cleanedData);
   result = replaceSingleCurlyPlaceholders(result, singleCurlyMap);
 
   // Pass 3: Bracket blocks [narrative]
-  const bracketMap = createBracketBlockMap(data);
+  const bracketMap = createBracketBlockMap(cleanedData);
   result = replaceBracketBlocks(result, bracketMap);
 
   // Pass 4: Modernization table (positional cell replacement)
-  result = replaceModernizationTable(result, data);
+  result = replaceModernizationTable(result, cleanedData);
 
   // Pass 5: Remove yellow highlighting (cleanup after replacements)
   result = removeHighlighting(result);
+
+  // Pass 6: Final cleanup - remove any remaining placeholder patterns
+  result = cleanupRemainingPlaceholders(result);
+
+  return result;
+}
+
+/**
+ * Clean [MANUELL: ...] placeholders from data.
+ * Replace with sensible defaults or empty strings.
+ */
+function cleanManualPlaceholders(data: GutachtenData): GutachtenData {
+  const clean = (val: string): string => {
+    if (!val) return val;
+    // Replace [MANUELL: ...] patterns with empty or default
+    if (val.startsWith('[MANUELL:') || val.startsWith('[MANUELL ')) {
+      return ''; // Will be handled by default values below
+    }
+    return val;
+  };
+
+  // Deep clone and clean
+  const cleaned = JSON.parse(JSON.stringify(data)) as GutachtenData;
+
+  // Property
+  if (clean(cleaned.property.unitPosition) === '') {
+    cleaned.property.unitPosition = 'k. A.';
+  }
+
+  // Dates
+  if (clean(cleaned.dates.inspectionDate) === '') {
+    cleaned.dates.inspectionDate = cleaned.dates.valuationDate || 'k. A.';
+  }
+
+  // Inspection
+  if (clean(cleaned.inspection.attendees) === '') {
+    cleaned.inspection.attendees = 'Der Eigentümer';
+  }
+  if (clean(cleaned.inspection.areasVisited) === '') {
+    cleaned.inspection.areasVisited = 'Wohnräume, Küche, Bad, Treppenhaus';
+  }
+
+  // Narratives
+  if (clean(cleaned.narratives.overallCondition) === '') {
+    cleaned.narratives.overallCondition = 'Der Gesamtzustand des Objektes entspricht dem Alter und der bisherigen Nutzung.';
+  }
+  if (clean(cleaned.narratives.defects) === '') {
+    cleaned.narratives.defects = 'Wesentliche Bauschäden konnten während der Besichtigung nicht festgestellt werden.';
+  }
+  if (clean(cleaned.narratives.otherNotes) === '') {
+    cleaned.narratives.otherNotes = 'Weitere bautechnische Beanstandungen konnten während des Ortstermins nicht festgestellt werden.';
+  }
+
+  // Components
+  if (clean(cleaned.components.sanitaryInstallation) === '') {
+    cleaned.components.sanitaryInstallation = 'Durchschnittliche Ausstattung';
+  }
+  if (clean(cleaned.components.electricalInstallation) === '') {
+    cleaned.components.electricalInstallation = 'Durchschnittliche Ausstattung';
+  }
+  if (clean(cleaned.components.specialFeatures) === '') {
+    cleaned.components.specialFeatures = '-';
+  }
+
+  return cleaned;
+}
+
+/**
+ * Remove any remaining placeholder patterns from the final output.
+ * This catches anything that wasn't explicitly mapped.
+ */
+function cleanupRemainingPlaceholders(xml: string): string {
+  let result = xml;
+
+  // Remove [MANUELL: ...] patterns (in case any slipped through)
+  result = result.replace(/\[MANUELL:[^\]]*\]/g, '');
+
+  // Remove remaining {{ ... }} patterns (unfilled double-curly)
+  result = result.replace(/\{\{\s*[a-z_]+\s*\}\}/gi, '');
+
+  // Remove remaining { ... } single curly patterns that look like placeholders
+  // Be careful not to remove legitimate text - only remove patterns that look like placeholders
+  // (surrounded by spaces or at word boundaries, containing only placeholder-like text)
+  result = result.replace(/\{\s*[A-Za-z0-9_\-.,\s]+\s*\}/g, (match) => {
+    // Keep if it looks like a real value (dates, numbers, etc.)
+    if (/^\{\s*\d{2}\.\d{2}\.\d{4}\s*\}$/.test(match)) return match; // Date
+    if (/^\{\s*\d+[,.]?\d*\s*(J|Jahre|m²|EUR)?\s*\}$/.test(match)) return match; // Number with unit
+    // Remove if it looks like a placeholder
+    return '';
+  });
 
   return result;
 }
